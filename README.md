@@ -1,5 +1,9 @@
 # KNIGHT: Knowledge Graph-Driven Multiple-Choice Question Generation with Adaptive Hardness Calibration
 
+[![PyPI version](https://img.shields.io/pypi/v/knight-mcq.svg)](https://pypi.org/project/knight-mcq/) [![Python 3.11+](https://img.shields.io/pypi/pyversions/knight-mcq.svg)](https://pypi.org/project/knight-mcq/)
+
+**Install:** `pip install knight-mcq` · **Package:** [knight-mcq on PyPI](https://pypi.org/project/knight-mcq/)
+
 This repository is the **reference implementation** for the paper **KNIGHT** (CPAL 2026). It builds a topic-specific, reusable knowledge graph from external sources and generates difficulty-controlled multiple-choice question (MCQ) datasets from graph paths, with optional LLM validation.
 
 **Paper:** [KNIGHT on OpenReview (CPAL 2026)](https://openreview.net/forum?id=8kA9oO5gEc)
@@ -180,45 +184,46 @@ This feature allows the chatbot to automatically generate Question/Answer pairs 
 
 ---
 
-## Installation and launch
+## Installation
 
-- **From PyPI** (after the package is published):
-  ```bash
-  pip install knight-mcq
-  ```
-  Then run the chatbot with: `python -m app.core.agents.gpt.chatbot` (see Launch below). Copy `.env.example` to `.env` and configure.
+**Recommended (PyPI):**
 
-- **From source** ([GitHub](https://github.com/ErfanShm/knight-mcq)):
-  ```bash
-  git clone https://github.com/ErfanShm/knight-mcq.git
-  cd knight-mcq
-  uv sync
-  ```
+```bash
+pip install knight-mcq
+```
 
-- **Configure:** Copy `.env.example` to `.env` and fill in your values (see Configuration above).
+Then copy the env template and configure (see [Requirements and Configuration](#requirements-and-configuration)):
 
-**Reproducing results / Quick start**
+```bash
+# From the folder where you run the app, or clone the repo just to get .env.example
+curl -O https://raw.githubusercontent.com/ErfanShm/knight-mcq/main/.env.example
+# Rename to .env and fill in your values
+```
 
-The paper uses Wikipedia/Wikidata as the external knowledge source and the pipeline: build a topic-specific KG from queries, then generate difficulty-controlled MCQs from graph paths. Minimal steps:
+**Development / from source:** Clone [the repo](https://github.com/ErfanShm/knight-mcq), then `uv sync` (or `pip install -e .`). Use this if you need to modify the code.
 
-1. Install: `uv sync`
-2. Configure: copy `.env.example` to `.env`; set Neo4j credentials and `OPENAI_API_KEY`
-3. Start Neo4j, then run one agent: `python -m app.core.agents.gpt.chatbot`
-4. Set an optional session topic (e.g. a domain such as History, Biology, or Mathematics as in the paper)
-5. Ask a question to grow the KG; when the graph has enough structure, run `/generate_qa` and choose complexity (path length) and options to produce MCQs
+---
 
-Full reproduction of paper experiments would use the same Neo4j/API setup and follow the same topic and generation flow as described in the paper.
+## Launch
 
-- **Launch the chatbot**
-    Choose the agent you want to run:
-    - **GPT Agent:**
-      ```bash
-      python -m app.core.agents.gpt.chatbot
-      ```
-    - **REBEL Agent:**
-      ```bash
-      python -m app.core.agents.rebel.chatbot
-      ```
+After installing and configuring `.env`:
+
+- **GPT Agent:** `python -m app.core.agents.gpt.chatbot`
+- **REBEL Agent:** `python -m app.core.agents.rebel.chatbot`
+
+---
+
+## Reproducing results / Quick start
+
+The paper uses Wikipedia/Wikidata and the pipeline: build a topic-specific KG from queries, then generate difficulty-controlled MCQs from graph paths.
+
+1. **Install:** `pip install knight-mcq`
+2. **Configure:** Copy [.env.example](https://github.com/ErfanShm/knight-mcq/blob/main/.env.example) to `.env`; set Neo4j credentials and `OPENAI_API_KEY` (and `OPENAI_API_BASE` if using a custom endpoint).
+3. **Start Neo4j**, then run: `python -m app.core.agents.gpt.chatbot`
+4. Set an optional session topic (e.g. History, Biology, or Mathematics as in the paper).
+5. Ask a question to grow the KG; when the graph has enough structure, run `/generate_qa` and choose complexity and options to produce MCQs.
+
+Full reproduction uses the same Neo4j/API setup and topic flow as in the paper.
 
 ---
 

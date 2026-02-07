@@ -8,7 +8,7 @@ include = ["app*"]
 
 [project]
 name = "knight-mcq"
-version = "0.1.0"
+version = "0.1.1"
 description = "KNIGHT: Knowledge Graph-Driven Multiple-Choice Question Generation with Adaptive Hardness Calibration. Builds a topic-specific, reusable knowledge graph from external sources (default: Wikipedia/Wikidata) and generates difficulty-controlled MCQs from graph paths, with optional LLM validation."
 readme = "README.md"
 requires-python = ">=3.11"
