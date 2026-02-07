@@ -1,0 +1,49 @@
+[project]
+name = "knight-mcq"
+version = "0.1.0"
+description = "KNIGHT: Knowledge Graph-Driven Multiple-Choice Question Generation with Adaptive Hardness Calibration. Builds a topic-specific, reusable knowledge graph from external sources (default: Wikipedia/Wikidata) and generates difficulty-controlled MCQs from graph paths, with optional LLM validation."
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+authors = [
+    { name = "Mohammad Amanlou" },
+    { name = "Erfan Shafiee Moghaddam" },
+    { name = "Mahdi Nouri" },
+    { name = "Yasaman Amou Jafary" },
+    { name = "Farhan Farsi" },
+    { name = "Behnam Bahrak" },
+]
+keywords = [
+    "multiple-choice-question-generation",
+    "knowledge-graph",
+    "difficulty-calibration",
+    "question-answering-dataset",
+    "LLM",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+    "faiss-cpu>=1.10.0",
+    "langchain>=0.3.22",
+    "langchain-community>=0.3.20",
+    "langchain-openai>=0.3.3",
+    "neo4j>=5.27.0",
+    "nltk>=3.9.1",
+    "numpy>=2.2.2",
+    "pytest>=7.0.0",
+    "python-dotenv>=1.0.1",
+    "sentence-transformers>=4.0.1",
+    "spacy>=3.8.4",
+    "tenacity>=8.0.0",
+    "torch>=2.6.0",
+    "transformers>=4.48.2",
+    "wikipedia>=1.4.0",
+    "wikipedia-api>=0.8.1",
+]
