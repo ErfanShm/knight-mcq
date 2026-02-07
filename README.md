@@ -182,13 +182,18 @@ This feature allows the chatbot to automatically generate Question/Answer pairs 
 
 ## Installation and launch
 
-- **From source (recommended):**
+- **From PyPI** (after the package is published):
   ```bash
-  git clone <your-repo-url>
-  cd <your-repo-name>
+  pip install knight-mcq
+  ```
+  Then run the chatbot with: `python -m app.core.agents.gpt.chatbot` (see Launch below). Copy `.env.example` to `.env` and configure.
+
+- **From source** ([GitHub](https://github.com/ErfanShm/knight-mcq)):
+  ```bash
+  git clone https://github.com/ErfanShm/knight-mcq.git
+  cd knight-mcq
   uv sync
   ```
-  After publishing to PyPI you can also: `pip install knight-mcq`
 
 - **Configure:** Copy `.env.example` to `.env` and fill in your values (see Configuration above).
 
@@ -318,6 +323,21 @@ The sanity tests in `app/tests/test_sanity.py` run without external services (no
 ## Current status
 
 - Functional GPT and REBEL agents; Neo4j-backed KG; Wikipedia-based (replaceable) external knowledge; difficulty-controlled MCQ generation with optional validation; configurable depth and logging.
+
+---
+
+## Publishing to PyPI (maintainers)
+
+**Option A – GitHub Action (recommended)**  
+1. In [PyPI Account](https://pypi.org/manage/account/token/) create an API token (scope: entire account or just this project).  
+2. In your repo: **Settings → Secrets and variables → Actions** → New repository secret: name `PYPI_API_TOKEN`, value = the token.  
+3. Bump `version` in `pyproject.toml`, commit and push.  
+4. Create a **Release** (e.g. tag `v0.1.0`): **Releases → Create a new release** → choose tag `v0.1.0`, publish. The workflow will build and upload to PyPI.
+
+**Option B – Manual**  
+1. `pip install build twine` (or `uv sync --extra dev`).  
+2. Bump `version` in `pyproject.toml`.  
+3. `python -m build` then `twine upload dist/*` (use your PyPI token when prompted). Test first with `twine upload --repository testpypi dist/*` if you prefer.
 
 ---
 

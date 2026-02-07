@@ -1,10 +1,18 @@
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["app*"]
+
 [project]
 name = "knight-mcq"
 version = "0.1.0"
 description = "KNIGHT: Knowledge Graph-Driven Multiple-Choice Question Generation with Adaptive Hardness Calibration. Builds a topic-specific, reusable knowledge graph from external sources (default: Wikipedia/Wikidata) and generates difficulty-controlled MCQs from graph paths, with optional LLM validation."
 readme = "README.md"
 requires-python = ">=3.11"
-license = "MIT"
+license = { text = "MIT" }
 authors = [
     { name = "Mohammad Amanlou" },
     { name = "Erfan Shafiee Moghaddam" },
@@ -47,3 +55,11 @@ dependencies = [
     "wikipedia>=1.4.0",
     "wikipedia-api>=0.8.1",
 ]
+
+[project.optional-dependencies]
+dev = ["build>=0.10", "twine>=4.0"]
+
+[project.urls]
+Homepage = "https://github.com/ErfanShm/knight-mcq"
+Repository = "https://github.com/ErfanShm/knight-mcq"
+Documentation = "https://github.com/ErfanShm/knight-mcq#readme"
